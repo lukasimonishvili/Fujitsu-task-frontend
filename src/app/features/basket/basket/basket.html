@@ -1,0 +1,30 @@
+<section class="container mt-4">
+  <h2 class="mb-4">Basket</h2>
+
+  @if (loading()) {
+    <p>Loading...</p>
+  } @else {
+    @if (items().length === 0) {
+      <p>Your basket is empty.</p>
+    } @else {
+      <div class="list-group mb-4">
+        @for (item of items(); track item.productId) {
+          <div class="list-group-item d-flex justify-content-between">
+            <div>
+              <h5>{{ item.productName }}</h5>
+              <small>{{ item.weight }} kg × {{ item.quantity }}</small>
+            </div>
+
+            <div>
+              <strong> {{ item.weight * item.quantity }} kg </strong>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="alert alert-info text-center">
+        <strong>Total weight: {{ totalWeight() | number: '1.2-2' }} kg</strong>
+      </div>
+    }
+  }
+</section>

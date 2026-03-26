@@ -1,0 +1,73 @@
+<section class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="text-center mb-4">Register</h3>
+
+          @if (successMessage) {
+            <div class="alert alert-success">
+              {{ successMessage }}
+            </div>
+          }
+
+          @if (errorMessage) {
+            <div class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
+          }
+
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="mb-3">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                [class.is-invalid]="form.controls.email.touched && form.controls.email.invalid"
+              />
+
+              @if (form.controls.email.touched && form.controls.email.invalid) {
+                <div class="invalid-feedback">Valid email is required</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label>Password</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                [class.is-invalid]="
+                  form.controls.password.touched && form.controls.password.invalid
+                "
+              />
+
+              @if (form.controls.password.touched && form.controls.password.invalid) {
+                <div class="invalid-feedback">
+                  Password must be strong (8+, upper, lower, number, special char)
+                </div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="confirmPassword"
+                [class.is-invalid]="form.controls.confirmPassword.touched && !passwordsMatch()"
+              />
+
+              @if (form.controls.confirmPassword.touched && !passwordsMatch()) {
+                <div class="invalid-feedback">Passwords do not match</div>
+              }
+            </div>
+
+            <button class="btn btn-success w-100" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

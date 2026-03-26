@@ -1,0 +1,11 @@
+@if (notificationService.notification()) {
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+    <div
+      class="alert"
+      [class.alert-success]="notificationService.notification()!.type === 'success'"
+      [class.alert-danger]="notificationService.notification()!.type === 'error'"
+    >
+      {{ notificationService.notification()!.message }}
+    </div>
+  </div>
+}

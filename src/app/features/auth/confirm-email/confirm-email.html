@@ -1,0 +1,27 @@
+<section class="container text-center mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      @if (loading()) {
+        <div>
+          <h3>Confirming your email...</h3>
+        </div>
+      }
+
+      @if (success()) {
+        <div class="alert alert-success">
+          <h4>Email confirmed successfully</h4>
+          <p>You can now log in.</p>
+
+          <a routerLink="/login" class="btn btn-primary mt-3"> Go to Login </a>
+        </div>
+      }
+
+      @if (error()) {
+        <div class="alert alert-danger">
+          <h4>Confirmation failed</h4>
+          <p>Invalid or expired token.</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
